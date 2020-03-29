@@ -2,15 +2,18 @@
 
 echo	"Welcome To Employee Wage Computation"
 
-#	CONSTANTS
+#CONSTANTS
 IS_PRESENT=1;
 
-#	VARIABLES
+#VARIABLES
+empWagePerHr=20;
+fullDayHr=8;
+wage=0;
 randomNum=$((RANDOM%2));
 
 if	[	$IS_PRESENT	-eq	$randomNum	];
 then
-	echo	"Employee is Present";
+	echo wage=$((empWagePerHr*fullDayHr));
 else
-	echo	"Employee is Absent";
+	echo "wage= "$wage
 fi
