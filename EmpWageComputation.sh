@@ -26,12 +26,19 @@ function	getWorkHours()	{
 	esac
 	echo	$workHr
 }
+function	getDailyWage()	{
+	local workHrPerDay=$1
+	wagePerDay=$((workHrPerDay	*	EMP_WAGE_PER_HR));
+	echo	$wagePerDay
+}
 
 while	[[	$totalWorkHr	-lt	$HRS_IN_MONTH	]]	&&	[[	$workingDays	-lt	$WORKING_DAYS_PER_MONTH	]]
 do
 	randomTime=$((RANDOM%3));
-	workHr="$(	getWorkHours	$randomTime	)"
 	((workingDays++));
+	workHr="$(	getWorkHours	$randomTime	)"
 	totalWorkHr=$((totalWorkHr	+	workHr));
+	empWagePerDay[$workingDays]="$(	getDailyWage	$workHr	)"
 done
 echo	monthlyWage=$((totalWorkHr	*	EMP_WAGE_PER_HR));
+echo	"Daily Wage : "${empWagePerDay[@]}
