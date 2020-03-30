@@ -1,7 +1,7 @@
 #!/bin/bash	-x
 
 echo	"Welcome To Employee Wage Computation"
-
+declare	-A	empWagePerDay
 #CONSTANTS
 IS_FULL_TIME=1;
 IS_PART_TIME=2;
@@ -27,7 +27,7 @@ function	getWorkHours()	{
 	echo	$workHr
 }
 function	getDailyWage()	{
-	local workHrPerDay=$1
+	local workHrPerDay=$1;
 	wagePerDay=$((workHrPerDay	*	EMP_WAGE_PER_HR));
 	echo	$wagePerDay
 }
@@ -42,3 +42,4 @@ do
 done
 echo	monthlyWage=$((totalWorkHr	*	EMP_WAGE_PER_HR));
 echo	"Daily Wage : "${empWagePerDay[@]}
+echo	"Day : "${!empWagePerDay[@]}
