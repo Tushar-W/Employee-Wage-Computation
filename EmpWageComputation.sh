@@ -10,13 +10,13 @@ randomTime=$((RANDOM%3));
 
 case $randomTime in
 	$IS_FULL_TIME)
-			workHr=8
-			;;
+		workHr=8
+		;;
 	$IS_PART_TIME)
-			workHr=4
-			;;
+		workHr=4
+		;;
 	*)
-			workHr=0
-			;;
+		workHr=0
+		;;
 esac
 echo wage=$(($workHr*$EMP_WAGE_PER_HR));
