@@ -1,6 +1,7 @@
 #!/bin/bash	-x
 
 echo	"Welcome To Employee Wage Computation"
+
 declare	-A	empWagePerDay
 #CONSTANTS
 IS_FULL_TIME=1;
