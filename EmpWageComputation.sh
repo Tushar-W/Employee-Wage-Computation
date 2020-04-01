@@ -1,6 +1,6 @@
-#!/bin/bash	-x
+#!/bin/bash -x
 
-echo	"Welcome To Employee Wage Computation"
+echo "Welcome To Employee Wage Computation"
 
 #CONSTANTS
 IS_FULL_TIME=1;
@@ -10,21 +10,21 @@ WORKING_DAYS_PER_MONTH=20;
 #VARIABLES
 monthlyWage=0;
 
-for	((	day=1;	day<=$WORKING_DAYS_PER_MONTH;	day++	))
+for (( day=1; day<=$WORKING_DAYS_PER_MONTH; day++ ))
 do
-	randomTime=$((RANDOM%3));
-	case	$randomTime	in
-		$IS_FULL_TIME)
-				workHr=8
-				;;
-		$IS_PART_TIME)
-				workHr=4
-				;;
-		*)
-				workHr=0
-				;;
-	esac
-	wage=$(($workHr*$EMP_WAGE_PER_HR));
-	monthlyWage=$(($monthlyWage+$wage));
+		randomTime=$((RANDOM%3));
+		case $randomTime in
+							$IS_FULL_TIME)
+												workHr=8
+												;;
+							$IS_PART_TIME)
+												workHr=4
+												;;
+							*)
+												workHr=0
+												;;
+		esac
+		wage=$(($workHr*$EMP_WAGE_PER_HR));
+		monthlyWage=$(($monthlyWage+$wage));
 done
-echo	"Wages for a Month : "$monthlyWage
+echo "Wages for a Month:" $monthlyWage
