@@ -17,5 +17,4 @@ then
 else
 	workHr=0;
 fi
-
 echo wage=$(($workHr*$empWagePerHr));
