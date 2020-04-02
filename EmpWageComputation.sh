@@ -1,7 +1,6 @@
 #!/bin/bash -x
 
 echo "Welcome To Employee Wage Computation"
-
 #CONSTANTS
 IS_FULL_TIME=1;
 IS_PART_TIME=2;
@@ -13,32 +12,34 @@ totalWorkHr=0;
 workingDays=0;
 
 function getWorkHours() {
-				case $1 in
-						$IS_FULL_TIME)
-											workHr=8
-											;;
-						$IS_PART_TIME)
-											workHr=4
-											;;
-						*)
-											workHr=0
-											;;
-				esac
-				echo $workHr
+	case $1 in
+		$IS_FULL_TIME)
+			workHr=8
+			;;
+		$IS_PART_TIME)
+			workHr=4
+			;;
+		*)
+			workHr=0
+			;;
+	esac
+	echo $workHr
 }
-function getDailyWage() {
-	local workHrPerDay=$1
-	wagePerDay=$((workHrPerDay*EMP_WAGE_PER_HR));
+function calculateDailyWage() {
+	local workHr=$1
+	wagePerDay=$((workHr * EMP_WAGE_PER_HR))
 	echo $wagePerDay
 }
-
-while [[$totalWorkHr -lt $HRS_IN_MONTH]] && [[$workingDays -lt $WORKING_DAYS_PER_MONTH]]
-do
-	randomTime=$((RANDOM%3));
-	((workingDays++));
-	workHr="$( getWorkHours $randomTime )"
-	totalWorkHr=$((totalWorkHr+workHr));
-	empWagePerDay[$workingDays]="$( getDailyWage $workHr )"
-done
-echo monthlyWage=$((totalWorkHr*EMP_WAGE_PER_HR));
+function calculateTotalWorkHr() {
+	while [[ $totalWorkHr -lt $HRS_IN_MONTH && $workingDays -lt $WORKING_DAYS_PER_MONTH ]]
+	do
+		randomTime=$((RANDOM%3))
+		workHr=$( getWorkHours $randomTime )
+		empWagePerDay[$workingDays]=$( calculateDailyWage $workHr )
+		totalWorkHr=$((totalWorkHr + workHr))
+		((workingDays++))
+	done
+	echo ${empWagePerDay[@]}
+}
+empWagePerDay=$( calculateTotalWorkHr )
 echo "Daily Wage:" ${empWagePerDay[@]}
