@@ -40,8 +40,10 @@ function calculateTotalWorkHr() {
 		totalWorkHr=$((totalWorkHr + workHr))
 		((workingDays++));
 	done
-	echo ${empWagePerDay[@]}
 }
 
-empWagePerDay=$( calculateTotalWorkHr )
+calculateTotalWorkHr
+totalSalary=$((totalWorkHr * EMP_WAGE_PER_HR))
+echo "Total Salary:" $totalSalary
 echo "Daily Wage:" ${empWagePerDay[@]}
+echo "Days:" ${!empWagePerDay[@]}
